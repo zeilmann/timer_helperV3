@@ -16,7 +16,7 @@
           </div>
           <el-checkbox v-model="SegundaC[0]" label="Lock" size="large" />
           <div>
-            <el-tag v-if="parseInt(testem) != parseFloat(testem)" class="ml-2" type="danger">Minutes: {{ testem }}</el-tag>
+            <el-tag v-if="parseInt(testem) != parseFloat(testem)" class="ml-2" type="danger">Minutes: {{ testem.toFixed(2) }}</el-tag>
             <el-tag v-else class="ml-2" type="success">Minutes: {{ testem.toFixed(2) }}</el-tag>
             <el-tag class="ml-2" type="success">Hours: {{ testem2.toFixed(2) }}</el-tag>
           </div>
@@ -45,7 +45,7 @@
           </div>
           <el-checkbox v-model="SegundaC[1]" label="Lock" size="large" />
           <div>
-            <el-tag v-if="parseInt(testet) != parseFloat(testet)" class="ml-2" type="danger">Minutes: {{ testet }}</el-tag>
+            <el-tag v-if="parseInt(testet) != parseFloat(testet)" class="ml-2" type="danger">Minutes: {{ testet.toFixed(2) }}</el-tag>
             <el-tag v-else class="ml-2" type="success">Minutes: {{ testet.toFixed(2) }}</el-tag>
             <el-tag class="ml-2" type="success">Hours: {{ testet2.toFixed(2) }}</el-tag>
           </div>
@@ -75,7 +75,7 @@
           </div>
           <el-checkbox v-model="SegundaC[2]" label="Lock" size="large" />
           <div>
-            <el-tag v-if="parseInt(testew) != parseFloat(testew)" class="ml-2" type="danger">Minutes: {{ testew }}</el-tag>
+            <el-tag v-if="parseInt(testew) != parseFloat(testew)" class="ml-2" type="danger">Minutes: {{ testew.toFixed(2) }}</el-tag>
             <el-tag v-else class="ml-2" type="success">Minutes: {{ testew.toFixed(2) }}</el-tag>
             <el-tag class="ml-2" type="success">Hours: {{ testew2.toFixed(2) }}</el-tag>
           </div>
@@ -105,7 +105,7 @@
           </div>
           <el-checkbox v-model="SegundaC[3]" label="Lock" size="large" />
           <div>
-            <el-tag v-if="parseInt(testett) != parseFloat(testett)" class="ml-2" type="danger">Minutes: {{ testett }}</el-tag>
+            <el-tag v-if="parseInt(testett) != parseFloat(testett)" class="ml-2" type="danger">Minutes: {{ testett.toFixed(2) }}</el-tag>
             <el-tag v-else class="ml-2" type="success">Minutes: {{ testett.toFixed(2) }}</el-tag>
             <el-tag class="ml-2" type="success">Hours: {{ testett2.toFixed(2) }}</el-tag>
           </div>
@@ -135,7 +135,7 @@
           </div>
           <el-checkbox v-model="SegundaC[4]" label="Lock" size="large" />
           <div>
-            <el-tag v-if="parseInt(testef) != parseFloat(testef)" class="ml-2" type="danger">Minutes: {{ testef }}</el-tag>
+            <el-tag v-if="parseInt(testef) != parseFloat(testef)" class="ml-2" type="danger">Minutes: {{ testef.toFixed(2) }}</el-tag>
             <el-tag v-else class="ml-2" type="success">Minutes: {{ testef.toFixed(2) }}</el-tag>
             <el-tag class="ml-2" type="success">Hours: {{ testef2.toFixed(2) }}</el-tag>
           </div>
@@ -164,8 +164,7 @@
     <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" :value="totalB.toFixed(2)">
   </div>
 
-  
-  
+    
 </div>
 </div>
 </div>
@@ -375,8 +374,28 @@ export default {
 </script>
 
 <style>
-.demo-range .el-date-editor {
-  margin: 8px;
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text {
+  font-size: 14px;
+}
+
+.item {
+  margin-bottom: 18px;
+}
+
+.box-card {
+  width: 480px;
+}
+
+.card-body {
+
+  padding: 2px;
+  border-style: dotted;
 }
 
 .demo-range .el-range-separator {
