@@ -16,11 +16,12 @@
           </div>
           <el-checkbox v-model="SegundaC[0]" label="Lock" size="large" />
           <div>
-            <el-collapse  v-model="activeName" accordion>
+            <el-collapse v-model="activeName" accordion>
               <el-collapse-item title="Time Off" name="1">
                 <div>
-                  <div>In Minutes:</div>                  
-                  <el-input-number v-model="numM" @change="exibirhorariosMonday(1)" :min="0" :max="510" ></el-input-number>
+                  <div>In Minutes:</div>
+                  <el-input-number v-model="numM" @change="exibirhorariosMonday(1)" :min="0"
+                    :max="510"></el-input-number>
                 </div>
               </el-collapse-item>
             </el-collapse>
@@ -57,11 +58,12 @@
           </div>
           <el-checkbox v-model="SegundaC[1]" label="Lock" size="large" />
           <div>
-            <el-collapse  v-model="activeNameT" accordion>
+            <el-collapse v-model="activeNameT" accordion>
               <el-collapse-item title="Time Off" name="1">
                 <div>
-                  <div>In Minutes:</div>                  
-                  <el-input-number v-model="numT" @change="exibirhorariosMonday(2)" :min="0" :max="510" ></el-input-number>
+                  <div>In Minutes:</div>
+                  <el-input-number v-model="numT" @change="exibirhorariosMonday(2)" :min="0"
+                    :max="510"></el-input-number>
                 </div>
               </el-collapse-item>
             </el-collapse>
@@ -100,15 +102,16 @@
           <el-checkbox v-model="SegundaC[2]" label="Lock" size="large" />
           <div>
             <div>
-            <el-collapse  v-model="activeNameW" accordion>
-              <el-collapse-item title="Time Off" name="1">
-                <div>
-                  <div>In Minutes:</div>                  
-                  <el-input-number v-model="numW" @change="exibirhorariosMonday(3)" :min="0" :max="510" ></el-input-number>
-                </div>
-              </el-collapse-item>
-            </el-collapse>
-          </div>
+              <el-collapse v-model="activeNameW" accordion>
+                <el-collapse-item title="Time Off" name="1">
+                  <div>
+                    <div>In Minutes:</div>
+                    <el-input-number v-model="numW" @change="exibirhorariosMonday(3)" :min="0"
+                      :max="510"></el-input-number>
+                  </div>
+                </el-collapse-item>
+              </el-collapse>
+            </div>
             <el-tag v-if="parseInt(testew) != parseFloat(testew)" class="ml-2" type="danger">Minutes: {{
                 testew.toFixed(2)
             }}</el-tag>
@@ -142,15 +145,16 @@
           <el-checkbox v-model="SegundaC[3]" label="Lock" size="large" />
           <div>
             <div>
-            <el-collapse  v-model="activeNameTT" accordion>
-              <el-collapse-item title="Time Off" name="1">
-                <div>
-                  <div>In Minutes:</div>                  
-                  <el-input-number v-model="numTT" @change="exibirhorariosMonday(4)" :min="0" :max="510" ></el-input-number>
-                </div>
-              </el-collapse-item>
-            </el-collapse>
-          </div>
+              <el-collapse v-model="activeNameTT" accordion>
+                <el-collapse-item title="Time Off" name="1">
+                  <div>
+                    <div>In Minutes:</div>
+                    <el-input-number v-model="numTT" @change="exibirhorariosMonday(4)" :min="0"
+                      :max="510"></el-input-number>
+                  </div>
+                </el-collapse-item>
+              </el-collapse>
+            </div>
             <el-tag v-if="parseInt(testett) != parseFloat(testett)" class="ml-2" type="danger">Minutes: {{
                 testett.toFixed(2)
             }}</el-tag>
@@ -184,15 +188,16 @@
           <el-checkbox v-model="SegundaC[4]" label="Lock" size="large" />
           <div>
             <div>
-            <el-collapse  v-model="activeNameF" accordion>
-              <el-collapse-item title="Time Off" name="1">
-                <div>
-                  <div>In Minutes:</div>                  
-                  <el-input-number v-model="numF" @change="exibirhorariosMonday(5)" :min="0" :max="510" ></el-input-number>
-                </div>
-              </el-collapse-item>
-            </el-collapse>
-          </div>
+              <el-collapse v-model="activeNameF" accordion>
+                <el-collapse-item title="Time Off" name="1">
+                  <div>
+                    <div>In Minutes:</div>
+                    <el-input-number v-model="numF" @change="exibirhorariosMonday(5)" :min="0"
+                      :max="510"></el-input-number>
+                  </div>
+                </el-collapse-item>
+              </el-collapse>
+            </div>
             <el-tag v-if="parseInt(testef) != parseFloat(testef)" class="ml-2" type="danger">Minutes: {{
                 testef.toFixed(2)
             }}</el-tag>
@@ -225,8 +230,7 @@
           <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
             :value="totalB.toFixed(2)">
         </div>
-
-
+        
       </div>
     </div>
   </div>
@@ -240,11 +244,11 @@ import moment from 'moment'
 export default {
   data() {
     return {
-      activeName:  ['0'],
-      activeNameT:  ['0'],
-      activeNameW:  ['0'],
-      activeNameTT:  ['0'],
-      activeNameF:  ['0'],
+      activeName: ['0'],
+      activeNameT: ['0'],
+      activeNameW: ['0'],
+      activeNameTT: ['0'],
+      activeNameF: ['0'],
       numM: 0,
       numT: 0,
       numW: 0,
@@ -275,9 +279,13 @@ export default {
   },
 
   methods: {
+
+
+
     exibirhorariosMonday(params) {
 
-            
+      
+
       if (params === 1) {
         this.SegundaC[0] = true
 
@@ -301,46 +309,46 @@ export default {
       var bM = moment(this.monday[0]);
       this.testem = (aM.diff(bM, 'minutes'))
       this.testem2 = this.testem / 60;
-      if (this.activeName[0] === '1'){
-      this.testem = this.testem - this.numM
-      this.testem2 = this.testem / 60;
-       }
+      if (this.activeName[0] === '1') {
+        this.testem = this.testem - this.numM
+        this.testem2 = this.testem / 60;
+      }
 
       var aT = moment(this.tuesday[1]);
       var bT = moment(this.tuesday[0]);
       this.testet = (aT.diff(bT, 'minutes'))
       this.testet2 = this.testet / 60;
-      if (this.activeNameT[0] === '1'){
-      this.testet = this.testet - this.numT
-      this.testet2 = this.testet / 60;
-       }
+      if (this.activeNameT[0] === '1') {
+        this.testet = this.testet - this.numT
+        this.testet2 = this.testet / 60;
+      }
 
       var aW = moment(this.wednesday[1]);
       var bW = moment(this.wednesday[0]);
       this.testew = (aW.diff(bW, 'minutes'))
       this.testew2 = this.testew / 60;
-      if (this.activeNameW[0] === '1'){
-      this.testew = this.testew - this.numW
-      this.testew2 = this.testew / 60;
-       }
+      if (this.activeNameW[0] === '1') {
+        this.testew = this.testew - this.numW
+        this.testew2 = this.testew / 60;
+      }
 
       var aTT = moment(this.thursday[1]);
       var bTT = moment(this.thursday[0]);
       this.testett = (aTT.diff(bTT, 'minutes'))
       this.testett2 = this.testett / 60;
-      if (this.activeNameTT[0] === '1'){
-      this.testett = this.testett - this.numTT
-      this.testett2 = this.testett / 60;
-       }
+      if (this.activeNameTT[0] === '1') {
+        this.testett = this.testett - this.numTT
+        this.testett2 = this.testett / 60;
+      }
 
       var aF = moment(this.friday[1]);
       var bF = moment(this.friday[0]);
       this.testef = (aF.diff(bF, 'minutes'))
       this.testef2 = this.testef / 60;
-      if (this.activeNameF[0] === '1'){
-      this.testef = this.testef - this.numF
-      this.testef2 = this.testef / 60;
-       }
+      if (this.activeNameF[0] === '1') {
+        this.testef = this.testef - this.numF
+        this.testef2 = this.testef / 60;
+      }
 
 
       this.totalh = this.testem2 + this.testet2 + this.testew2 + this.testett2 + this.testef2
@@ -376,8 +384,8 @@ export default {
 
         this.testem2 = this.testem2 + divisaoS1;
         this.testem = this.testem + divisaoS;
-        
-      
+
+
       }
 
       //MUDAR TERCA FEIRA
@@ -395,6 +403,8 @@ export default {
         this.testet2 = this.testet2 + divisaoS1;
         this.testet = this.testet + divisaoS;
 
+      
+
 
       }
 
@@ -406,7 +416,7 @@ export default {
         let minutoQuarta1 = moment(addHoraQuarta).format('m');
         this.wednesday[1] = new Date(2022, 9, 7, horaQuarta1, minutoQuarta1),
 
-        this.testew2 = this.testew2 + divisaoS1
+          this.testew2 = this.testew2 + divisaoS1
         this.testew = this.testew + divisaoS
 
 
@@ -433,13 +443,16 @@ export default {
         let minutoSexta1 = moment(addHoraSexta).format('m');
         this.friday[1] = new Date(2022, 9, 7, horaSexta1, minutoSexta1),
 
-        this.testef2 = this.testef2 + divisaoS1
+          this.testef2 = this.testef2 + divisaoS1
         this.testef = this.testef + divisaoS
 
         //this.totalh = this.testem2 + this.testet2 + this.testew2 + this.testett2 + this.testef2
         //let totalTopM = this.testem + this.testet + this.testew + this.testett + this.testef
 
       }
+
+
+      
 
       this.totalh = this.testem2 + this.testet2 + this.testew2 + this.testett2 + this.testef2
 
@@ -451,6 +464,17 @@ export default {
       console.log(totalTop);
       totalM = 2550 - totalTopM
       this.totalB = this.totalh - 5
+
+      if (parseInt(this.testem) != parseFloat(this.testem) || parseInt(this.testet) != parseFloat(this.testet) || parseInt(this.testew) != parseFloat(this.testew) || parseInt(this.testett) != parseFloat(this.testett) || parseInt(this.testef) != parseFloat(this.testef)){
+        this.$message({
+        message: 'You need to add minutes until everything turns green!',
+        type: 'warning',
+        duration : 2000
+      });
+
+      }
+
+      
 
 
     }
