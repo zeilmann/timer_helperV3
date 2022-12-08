@@ -1,9 +1,66 @@
 <template>
-  <!-- SEGUNDA FEIRA -->
   <div class="container">
     <div class="row justify-content-sm-center">
       <div class="col-sm-auto">
-        <el-card class="box-card">
+        <el-tag type="success">Hours Calculated: {{ totalB.toFixed(2) }}</el-tag>
+        <el-tag type="sucess">Days: {{ valorrec1 }}</el-tag>
+        <el-tag type="success">OK</el-tag>
+        <hr>
+        <el-card shadow="always" class="box-card">
+          <template #header>
+            <div class="card-header">
+              <span>Holiday/Sick Day</span>
+            </div>
+          </template>
+          <el-checkbox @change="exibirhorariosMonday()" v-model="SickDay[0]" label="Monday" size="large" />
+          <el-checkbox @change="exibirhorariosMonday()" v-model="SickDay[1]" label="Tuesday" size="large" />
+          <el-checkbox @change="exibirhorariosMonday()" v-model="SickDay[2]" label="Wednesday" size="large" />
+          <el-checkbox @change="exibirhorariosMonday()" v-model="SickDay[3]" label="Thursday" size="large" />
+          <el-checkbox @change="exibirhorariosMonday()" v-model="SickDay[4]" label="Friday" size="large" />
+        </el-card>
+        <hr>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEPARACAO -->
+  <!-- <div class="container">
+    <div class="row justify-content-sm-center">
+      <div class="col-sm-auto">
+
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Hours Total</span>
+          </div>
+
+          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+            :value="totalh.toFixed(2)">
+
+        </div>
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Hours Total - Break</span>
+          </div>
+          <el-badge value="O K" class="item" type="success">
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+              :value="totalB.toFixed(2)">
+          </el-badge>
+        </div>
+
+        <el-checkbox v-model="SickDay[0]" label="Monday" size="large" />
+        <el-checkbox v-model="SickDay[1]" label="Tuesday" size="large" />
+        <el-checkbox v-model="SickDay[2]" label="Wednesday" size="large" />
+        <el-checkbox v-model="SickDay[3]" label="Thursday" size="large" />
+        <el-checkbox v-model="SickDay[4]" label="Friday" size="large" />
+
+      </div>
+    </div>
+  </div> -->
+  <!-- SEGUNDA FEIRA -->
+  <div v-show="SickDay[0] === false" class="container">
+    <div class="row justify-content-sm-center">
+      <div class="col-sm-auto">
+        <el-card shadow="always" class="box-card">
           <template #header>
             <div class="card-header">
               <span>Monday</span>
@@ -31,18 +88,21 @@
                 testem.toFixed(2)
             }}</el-tag>
             <el-tag v-else class="ml-2" type="success">Minutes: {{ testem.toFixed(2) }}</el-tag>
-            <el-tag class="ml-2" type="success">Hours: {{ testem2.toFixed(2) }}</el-tag>
+            <el-tag class="ml-2" type="success">Hours Integer: {{ testem2.toFixed(2) }}</el-tag>
           </div>
           <div class="input-group input-group-sm mb-3">
           </div>
         </el-card>
+        <hr>
       </div>
-    </div>
+      
+        </div>
+    
   </div>
 
   <!-- TERCA FEIRA  -->
 
-  <div class="container">
+  <div v-show="SickDay[1] === false" class="container">
     <div class="row justify-content-sm-center">
       <div class="col-sm-auto">
         <el-card class="box-card">
@@ -79,13 +139,14 @@
 
           </div>
         </el-card>
+        <hr>
       </div>
     </div>
   </div>
 
   <!-- QUARTA FEIRA  -->
 
-  <div class="container">
+  <div v-show="SickDay[2] === false" class="container">
     <div class="row justify-content-sm-center">
       <div class="col-sm-auto">
         <el-card class="box-card">
@@ -122,13 +183,14 @@
 
           </div>
         </el-card>
+        <hr>
       </div>
     </div>
   </div>
 
   <!-- Quinta Feira  -->
 
-  <div class="container">
+  <div v-show="SickDay[3] === false" class="container">
     <div class="row justify-content-sm-center">
       <div class="col-sm-auto">
         <el-card class="box-card">
@@ -165,13 +227,14 @@
 
           </div>
         </el-card>
+        <hr>
       </div>
     </div>
   </div>
 
   <!-- Sexta Feira  -->
 
-  <div class="container">
+  <div v-show="SickDay[4] === false" class="container">
     <div class="row justify-content-sm-center">
       <div class="col-sm-auto">
         <el-card class="box-card">
@@ -208,35 +271,14 @@
 
           </div>
         </el-card>
+        <hr>
       </div>
     </div>
   </div>
 
-  <div class="container">
-    <div class="row justify-content-sm-center">
-      <div class="col-sm-auto">
-
-        <div class="input-group input-group-sm mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-sm">Hours Total</span>
-          </div>
-          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-            :value="totalh.toFixed(2)">
-        </div>
-        <div class="input-group input-group-sm mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-sm">Hours Total - Break</span>
-          </div>
-          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-            :value="totalB.toFixed(2)">
-        </div>
-        
-      </div>
-    </div>
-  </div>
 
 </template>
-
+  
 <script>
 import moment from 'moment'
 
@@ -261,6 +303,7 @@ export default {
       friday: [new Date(2022, 9, 7, 7, 30), new Date(2022, 9, 7, 16, 0)],
       count: 1,
       SegundaC: [false, false, false, false, false],
+      SickDay: [false, false, false, false, false],
       testem: 510,
       testem2: 8.5,
       testet: 510,
@@ -274,7 +317,11 @@ export default {
       totalh: 42.5,
       totalB: 37.5,
       totalTopM: 0,
-      totalTopM1: 0
+      totalTopM1: 0,
+      valorrec1: 5,
+      totalC: 42.5,
+      
+
     };
   },
 
@@ -284,7 +331,7 @@ export default {
 
     exibirhorariosMonday(params) {
 
-      
+
 
       if (params === 1) {
         this.SegundaC[0] = true
@@ -354,24 +401,58 @@ export default {
       this.totalh = this.testem2 + this.testet2 + this.testew2 + this.testett2 + this.testef2
       let totalTopM = this.testem + this.testet + this.testew + this.testett + this.testef
 
-      let totalTop = 42.5 - this.totalh
+      let totalTop = this.totalC - this.totalh
       let totalM = 2550 - totalTopM
 
 
       let valorrec = this.SegundaC.filter((value) => value === false).length;
-      // valorrec = valorrec - 1
+      this.valorrec1 = this.SickDay.filter((value) => value === false).length;
+      
+      valorrec = Math.min(valorrec, this.valorrec1)
 
-      // alert(valorrec)
 
       let divisaoS = totalM / valorrec
       let divisaoS1 = divisaoS / 60
 
+      if (this.valorrec1 === 1){
+        this.totalB = 7.5
+        this.totalC = 12.5
+      }
+      if (this.valorrec1 === 2){
+        this.totalB = 15
+        this.totalC = 20
+      }
+      if (this.valorrec1 === 3){
+        this.totalB = 22.5
+        this.totalC = 27.5
+      }
+      if (this.valorrec1 === 4){
+        this.totalB = 30
+        this.totalC = 35
+      }
+      if (this.valorrec1 === 5){
+        this.totalB = 37.5
+        this.totalC = 42.5
+      }
 
-
-
+      if (this.SickDay[0] === true){
+        this.testem2 = 0;
+      }
+      if (this.SickDay[1] === true){
+        this.testet2 = 0;
+      }
+      if (this.SickDay[2] === true){
+        this.testew2 = 0;
+      }
+      if (this.SickDay[3] === true){
+        this.testett2 = 0;
+      }
+      if (this.SickDay[4] === true){
+        this.testef2 = 0;
+      }
       //MUDAR SEGUNDA FEIRA
 
-      if (this.SegundaC[0] === false) {
+      if (this.SegundaC[0] === false || this.SickDay[0] === false) {
         //alert("nao entrou")
         var aM1 = moment(this.monday[1]);
 
@@ -403,7 +484,7 @@ export default {
         this.testet2 = this.testet2 + divisaoS1;
         this.testet = this.testet + divisaoS;
 
-      
+
 
 
       }
@@ -452,29 +533,29 @@ export default {
       }
 
 
-      
 
+      
       this.totalh = this.testem2 + this.testet2 + this.testew2 + this.testett2 + this.testef2
 
       this.totalTopM1 = this.testem + this.testet + this.testew + this.testett + this.testef
 
       this.totalTopM1 = 2550 - this.totalTopM1
 
-      totalTop = 42.5 - this.totalh
+      totalTop = this.totalC - this.totalh
       console.log(totalTop);
       totalM = 2550 - totalTopM
-      this.totalB = this.totalh - 5
+      this.totalB = this.totalh - valorrec
 
-      if (parseInt(this.testem) != parseFloat(this.testem) || parseInt(this.testet) != parseFloat(this.testet) || parseInt(this.testew) != parseFloat(this.testew) || parseInt(this.testett) != parseFloat(this.testett) || parseInt(this.testef) != parseFloat(this.testef)){
+      if (parseInt(this.testem) != parseFloat(this.testem) || parseInt(this.testet) != parseFloat(this.testet) || parseInt(this.testew) != parseFloat(this.testew) || parseInt(this.testett) != parseFloat(this.testett) || parseInt(this.testef) != parseFloat(this.testef)) {
         this.$message({
-        message: 'You need to add minutes until everything turns green!',
-        type: 'warning',
-        duration : 2000
-      });
+          message: 'You need to add minutes until everything turns green!',
+          type: 'warning',
+          duration: 2000
+        });
 
       }
 
-      
+
 
 
     }
@@ -488,7 +569,7 @@ export default {
 
 
 </script>
-
+  
 <style>
 .card-header {
   display: flex;
