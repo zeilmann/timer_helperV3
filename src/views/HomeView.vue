@@ -1,10 +1,13 @@
 <template>
-  <div class="container">
+    <div class="container">
     <div class="row justify-content-sm-center">
       <div class="col-sm-auto">
-        <el-tag type="success">Hours Calculated: {{ totalB.toFixed(2) }}</el-tag>
+        <el-tag v-if="totalB.toFixed(2) === '0.00' || totalB.toFixed(2) === '37.50' || totalB.toFixed(2) === '22.50' || totalB.toFixed(2) === '30.00' || totalB.toFixed(2) === '15.00' || totalB.toFixed(2) === '7.50'" type="success">Hours Calculated: {{ totalB.toFixed(2) }}</el-tag>
+        <el-tag v-else type="danger">Hours Calculated: {{ totalB.toFixed(2) }}</el-tag>
+        <el-tag v-if ="totalB.toFixed(2) === '0.00'" type="Sucess">the whole week off😄😍😍😍</el-tag>
         <el-tag type="sucess">Days: {{ valorrec1 }}</el-tag>
-        <el-tag type="success">OK</el-tag>
+        <el-tag v-if=" totalB.toFixed(2) === '0.00' || totalB.toFixed(2) === '37.50' || totalB.toFixed(2) === '22.50' || totalB.toFixed(2) === '30.00' || totalB.toFixed(2) === '15.00' || totalB.toFixed(2) === '7.50'" type="success">😄😄</el-tag>
+        <el-tag v-else type="danger">😭😭</el-tag>
         <hr>
         <el-card shadow="always" class="box-card">
           <template #header>
@@ -23,40 +26,7 @@
     </div>
   </div>
 
-  <!-- SEPARACAO -->
-  <!-- <div class="container">
-    <div class="row justify-content-sm-center">
-      <div class="col-sm-auto">
-
-        <div class="input-group input-group-sm mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-sm">Hours Total</span>
-          </div>
-
-          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-            :value="totalh.toFixed(2)">
-
-        </div>
-        <div class="input-group input-group-sm mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-sm">Hours Total - Break</span>
-          </div>
-          <el-badge value="O K" class="item" type="success">
-            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-              :value="totalB.toFixed(2)">
-          </el-badge>
-        </div>
-
-        <el-checkbox v-model="SickDay[0]" label="Monday" size="large" />
-        <el-checkbox v-model="SickDay[1]" label="Tuesday" size="large" />
-        <el-checkbox v-model="SickDay[2]" label="Wednesday" size="large" />
-        <el-checkbox v-model="SickDay[3]" label="Thursday" size="large" />
-        <el-checkbox v-model="SickDay[4]" label="Friday" size="large" />
-
-      </div>
-    </div>
-  </div> -->
-  <!-- SEGUNDA FEIRA -->
+    <!-- SEGUNDA FEIRA -->
   <div v-show="SickDay[0] === false" class="container">
     <div class="row justify-content-sm-center">
       <div class="col-sm-auto">
@@ -304,6 +274,7 @@ export default {
       count: 1,
       SegundaC: [false, false, false, false, false],
       SickDay: [false, false, false, false, false],
+      Seletor: [false, false, false, false, false],
       testem: 510,
       testem2: 8.5,
       testet: 510,
@@ -405,14 +376,7 @@ export default {
       let totalM = 2550 - totalTopM
 
 
-      let valorrec = this.SegundaC.filter((value) => value === false).length;
-      this.valorrec1 = this.SickDay.filter((value) => value === false).length;
       
-      valorrec = Math.min(valorrec, this.valorrec1)
-
-
-      let divisaoS = totalM / valorrec
-      let divisaoS1 = divisaoS / 60
 
       if (this.valorrec1 === 1){
         this.totalB = 7.5
@@ -437,44 +401,84 @@ export default {
 
       if (this.SickDay[0] === true){
         this.testem2 = 0;
+        this.SegundaC[0] = true;
       }
       if (this.SickDay[1] === true){
         this.testet2 = 0;
+        this.SegundaC[1] = true;
       }
       if (this.SickDay[2] === true){
         this.testew2 = 0;
+        this.SegundaC[2] = true;
       }
       if (this.SickDay[3] === true){
         this.testett2 = 0;
+        this.SegundaC[3] = true;
       }
       if (this.SickDay[4] === true){
         this.testef2 = 0;
+        this.SegundaC[4] = true;
       }
+
+      if (this.SickDay[0] === true || this.SegundaC[0] === true ){
+        this.Seletor[0] = true 
+       // alert(this.Seletor[0])
+      }else{
+        this.Seletor[0] = false
+      }
+
+      if (this.SickDay[1] === true || this.SegundaC[1] === true ){
+        this.Seletor[1] = true 
+      }else{
+        this.Seletor[1] = false
+      }
+
+      if (this.SickDay[2] === true || this.SegundaC[2] === true ){
+        this.Seletor[2] = true 
+      }else{
+        this.Seletor[2] = false
+      }
+
+      if (this.SickDay[3] === true || this.SegundaC[3] === true ){
+        this.Seletor[3] = true 
+      }else{
+        this.Seletor[3] = false
+      }
+
+      if (this.SickDay[4] === true || this.SegundaC[4] === true ){
+        this.Seletor[4] = true 
+      }else{
+        this.Seletor[4] = false
+      }
+
+      
+      let valorrec = this.SegundaC.filter((value) => value === false).length;
+      this.valorrec1 = this.SickDay.filter((value) => value === false).length;
+      
+      valorrec = Math.min(valorrec, this.valorrec1)
+ 
+      //alert(valorrec)
+      let divisaoS = totalM / valorrec
+      let divisaoS1 = divisaoS / 60
       //MUDAR SEGUNDA FEIRA
 
-      if (this.SegundaC[0] === false || this.SickDay[0] === false) {
-        //alert("nao entrou")
+      if (this.Seletor[0] === false) {
+       //alert("entrou segunda")
         var aM1 = moment(this.monday[1]);
-
-
         let addHoraSegunda = moment(aM1).add(divisaoS, 'm');
         let horaSegunda1 = moment(addHoraSegunda).format('H');
         let minutoSegunda1 = moment(addHoraSegunda).format('m');
         this.monday[1] = new Date(2022, 9, 7, horaSegunda1, minutoSegunda1)
-
-
         this.testem2 = this.testem2 + divisaoS1;
         this.testem = this.testem + divisaoS;
-
-
       }
 
+   
       //MUDAR TERCA FEIRA
 
-      if (this.SegundaC[1] === false) {
+      if (this.Seletor[1] === false) {
+       // alert("entrou Terca")
         var aT1 = moment(this.tuesday[1]);
-
-
         let addHoraTerca = moment(aT1).add(divisaoS, 'm');
         let horaTerca1 = moment(addHoraTerca).format('H');
         let minutoTerca1 = moment(addHoraTerca).format('m');
@@ -490,7 +494,7 @@ export default {
       }
 
       //MUDAR QUARTA FEIRA
-      if (this.SegundaC[2] === false) {
+      if (this.Seletor[2] === false) {
         var aW1 = moment(this.wednesday[1]);
         let addHoraQuarta = moment(aW1).add(divisaoS, 'm');
         let horaQuarta1 = moment(addHoraQuarta).format('H');
@@ -504,7 +508,7 @@ export default {
       }
 
       //MUDAR QUINTA FEIRA
-      if (this.SegundaC[3] === false) {
+      if (this.Seletor[3] === false) {
         var aTT1 = moment(this.thursday[1]);
         let addHoraQuinta = moment(aTT1).add(divisaoS, 'm');
         let horaQuinta1 = moment(addHoraQuinta).format('H');
@@ -517,14 +521,14 @@ export default {
 
       //MUDAR SEXTA FEIRA
 
-      if (this.SegundaC[4] === false) {
+      if (this.Seletor[4] === false) {
         var aF1 = moment(this.friday[1]);
         let addHoraSexta = moment(aF1).add(divisaoS, 'm');
         let horaSexta1 = moment(addHoraSexta).format('H');
         let minutoSexta1 = moment(addHoraSexta).format('m');
         this.friday[1] = new Date(2022, 9, 7, horaSexta1, minutoSexta1),
 
-          this.testef2 = this.testef2 + divisaoS1
+        this.testef2 = this.testef2 + divisaoS1
         this.testef = this.testef + divisaoS
 
         //this.totalh = this.testem2 + this.testet2 + this.testew2 + this.testett2 + this.testef2
@@ -537,6 +541,8 @@ export default {
       
       this.totalh = this.testem2 + this.testet2 + this.testew2 + this.testett2 + this.testef2
 
+      console.log("Segunda: " + this.testem2 + " Terca: " + this.testet2 + " Quarta: " + this.testew2 + " Quinta: " + this.testett2 + " Sexta: " + this.testef2)
+
       this.totalTopM1 = this.testem + this.testet + this.testew + this.testett + this.testef
 
       this.totalTopM1 = 2550 - this.totalTopM1
@@ -544,7 +550,7 @@ export default {
       totalTop = this.totalC - this.totalh
       console.log(totalTop);
       totalM = 2550 - totalTopM
-      this.totalB = this.totalh - valorrec
+      this.totalB = this.totalh - this.valorrec1
 
       if (parseInt(this.testem) != parseFloat(this.testem) || parseInt(this.testet) != parseFloat(this.testet) || parseInt(this.testew) != parseFloat(this.testew) || parseInt(this.testett) != parseFloat(this.testett) || parseInt(this.testef) != parseFloat(this.testef)) {
         this.$message({
