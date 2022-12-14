@@ -246,6 +246,7 @@
         <hr>
       </div>
     </div>
+    Made with ❤️ by Augusto Zeilmann - 2022
   </div>
 
 
@@ -253,32 +254,22 @@
   <el-dialog
     v-model="dialogVisible"
     title="Message"
-    width="30%"
+    width="50%"
     :before-close="handleClose"
   >
     <span>Week Hours</span>
     <template #footer>
-        <hr>
-        <span>Mon: </span>
-        <span>In: {{this.JuncSegunda_1}}</span>
-        <span> Out: {{this.JuncSegunda_2}}</span>
-        <hr>
-        <span>Tue: </span>
-        <span>In: {{this.JuncTerca_1}}</span>
-        <span> Out: {{this.JuncTerca_2}}</span>
-        <hr>
-        <span>Wed: </span>
-        <span>In: {{this.JuncQuarta_1}}</span>
-        <span> Out: {{this.JuncQuarta_2}}</span>
-        <hr>
-        <span>Thu: </span>
-        <span>In: {{this.JuncQuinta_1}}</span>
-        <span> Out: {{this.JuncQuinta_2}}</span>
-        <hr>
-        <span>Fri: </span>
-        <span>In: {{this.JuncSexta_1}}</span>
-        <span> Out: {{this.JuncSexta_2}}</span>
-        <hr>
+      <el-table
+    :data="tableData"
+    style="width: 100%"
+    :row-class-name="tableRowClassName"
+  >
+    <el-table-column prop="date" label="Day" width="180" />
+    <el-table-column prop="in" label="In"  />
+    <el-table-column prop="out" label="Out" />
+    <el-table-column prop="hours" label="Hours" />
+  </el-table>
+       
         
         
         <el-button type="primary" @click="dialogVisible = false">
@@ -343,6 +334,32 @@ export default {
       JuncQuinta_2 : "00:00",
       JuncSexta_1 : "00:00",
       JuncSexta_2 : "00:00",
+      tableData:  [{
+          date: 'Monday',
+          in: '07:30',
+          out: '16:00',
+          hours: '8.5'
+        }, {
+          date: 'Tuesday',
+          in: '07:30',
+          out: '16:00',
+          hours: '8.5'
+        }, {
+          date: 'Wednesday',
+          in: '07:30',
+          out: '16:00',
+          hours: '8.5'
+        }, {
+          date: 'Wednesday',
+          in: '07:30',
+          out: '16:00',
+          hours: '8.5'
+        }, {
+          date: 'Friday',
+          in: '07:30',
+          out: '16:00',
+          hours: '8.5'
+        }]
 
       
 
@@ -353,11 +370,16 @@ export default {
 
     listahorarios(){
 
+      
+
       this.dialogVisible = true
        //MONDAY
        if (this.SickDay[0] === true) {
         this.JuncSegunda_1 = "Holidays/Sick"
         this.JuncSegunda_2 = "Holidays/Sick"
+        this.tableData[0].in = this.JuncSegunda_1
+        this.tableData[0].out = this.JuncSegunda_2
+        this.tableData[0].hours = "0.00"
        }else{
 
         var Segunda_list_1 = moment(this.monday[0]);
@@ -376,12 +398,20 @@ export default {
         minutoSegunda2_l = this.funcaoColocaZero(minutoSegunda2_l)
         
         this.JuncSegunda_2 = horaSegunda2_l + ":" + minutoSegunda2_l
+
+        this.tableData[0].in = this.JuncSegunda_1
+        this.tableData[0].out = this.JuncSegunda_2
+        this.tableData[0].hours = this.testem2.toFixed(2)
+        
       }
        
         //TERCA
         if (this.SickDay[1] === true) {
         this.JuncTerca_1 = "Holidays/Sick"
         this.JuncTerca_2 = "Holidays/Sick"
+        this.tableData[1].in = this.JuncTerca_1
+        this.tableData[1].out = this.JuncTerca_2
+        this.tableData[1].hours = "0.00"
        }else{
         var Terca_list_1 = moment(this.tuesday[0]);
         let horaTerca1_l = moment(Terca_list_1).format('H');
@@ -399,6 +429,9 @@ export default {
         minutoTerca2_l = this.funcaoColocaZero(minutoTerca2_l)
         
         this.JuncTerca_2 = horaTerca2_l + ":" + minutoTerca2_l
+        this.tableData[1].in = this.JuncTerca_1
+        this.tableData[1].out = this.JuncTerca_2
+        this.tableData[1].hours = this.testet2.toFixed(2)
        }
 
         // QUARTA
@@ -406,6 +439,9 @@ export default {
         if (this.SickDay[2] === true) {
         this.JuncQuarta_1 = "Holidays/Sick"
         this.JuncQuarta_2 = "Holidays/Sick"
+        this.tableData[2].in = this.JuncQuarta_1
+        this.tableData[2].out = this.JuncQuarta_2
+        this.tableData[2].hours = "0.00"
        }else{
         
         var Quarta_list_1 = moment(this.wednesday[0]);
@@ -424,6 +460,9 @@ export default {
         minutoQuarta2_l = this.funcaoColocaZero(minutoQuarta2_l)
         
         this.JuncQuarta_2 = horaQuarta2_l + ":" + minutoQuarta2_l
+        this.tableData[2].in = this.JuncQuarta_1
+        this.tableData[2].out = this.JuncQuarta_2
+        this.tableData[2].hours = this.testew2.toFixed(2)
        }
         
         //QUINTA
@@ -431,6 +470,9 @@ export default {
         if (this.SickDay[3] === true) {
         this.JuncQuinta_1 = "Holidays/Sick"
         this.JuncQuinta_2 = "Holidays/Sick"
+        this.tableData[3].in = this.JuncQuinta_1
+        this.tableData[3].out = this.JuncQuinta_2
+        this.tableData[3].hours = "0.00"
        }else{
         
         var Quinta_list_1 = moment(this.thursday[0]);
@@ -449,6 +491,9 @@ export default {
         minutoQuinta2_l = this.funcaoColocaZero(minutoQuinta2_l)
         
         this.JuncQuinta_2 = horaQuinta2_l + ":" + minutoQuinta2_l
+        this.tableData[3].in = this.JuncQuinta_1
+        this.tableData[3].out = this.JuncQuinta_2
+        this.tableData[3].hours = this.testett2.toFixed(2)
        }
 
         //SEXTA
@@ -456,6 +501,9 @@ export default {
         if (this.SickDay[4] === true) {
         this.JuncSexta_1 = "Holidays/Sick"
         this.JuncSexta_2 = "Holidays/Sick"
+        this.tableData[4].in = this.JuncSexta_1
+        this.tableData[4].out = this.JuncSexta_2
+        this.tableData[4].hours = "0.00"
        }else{
         
         var Sexta_list_1 = moment(this.friday[0]);
@@ -474,6 +522,9 @@ export default {
         minutoSexta2_l = this.funcaoColocaZero(minutoSexta2_l)
         
         this.JuncSexta_2 = horaSexta2_l + ":" + minutoSexta2_l
+        this.tableData[4].in = this.JuncSexta_1
+        this.tableData[4].out = this.JuncSexta_2
+        this.tableData[4].hours = this.testef2.toFixed(2)
        }
     },
 
