@@ -9,6 +9,8 @@
         <el-tag v-if=" totalB.toFixed(2) === '0.00' || totalB.toFixed(2) === '37.50' || totalB.toFixed(2) === '22.50' || totalB.toFixed(2) === '30.00' || totalB.toFixed(2) === '15.00' || totalB.toFixed(2) === '7.50'" type="success">😄😄</el-tag>
         <el-tag v-else type="danger">😭😭</el-tag>
         <hr>
+        <el-button @click="listahorarios()" type="success" round>List</el-button>
+        <hr>
         <el-card shadow="always" class="box-card">
           <template #header>
             <div class="card-header">
@@ -247,6 +249,45 @@
   </div>
 
 
+  
+  <el-dialog
+    v-model="dialogVisible"
+    title="Message"
+    width="30%"
+    :before-close="handleClose"
+  >
+    <span>Week Hours</span>
+    <template #footer>
+        <hr>
+        <span>Mon: </span>
+        <span>In: {{this.JuncSegunda_1}}</span>
+        <span> Out: {{this.JuncSegunda_2}}</span>
+        <hr>
+        <span>Tue: </span>
+        <span>In: {{this.JuncTerca_1}}</span>
+        <span> Out: {{this.JuncTerca_2}}</span>
+        <hr>
+        <span>Wed: </span>
+        <span>In: {{this.JuncQuarta_1}}</span>
+        <span> Out: {{this.JuncQuarta_2}}</span>
+        <hr>
+        <span>Thu: </span>
+        <span>In: {{this.JuncQuinta_1}}</span>
+        <span> Out: {{this.JuncQuinta_2}}</span>
+        <hr>
+        <span>Fri: </span>
+        <span>In: {{this.JuncSexta_1}}</span>
+        <span> Out: {{this.JuncSexta_2}}</span>
+        <hr>
+        
+        
+        <el-button type="primary" @click="dialogVisible = false">
+          Confirm
+        </el-button>
+      
+    </template>
+  </el-dialog>
+
 </template>
   
 <script>
@@ -291,6 +332,18 @@ export default {
       totalTopM1: 0,
       valorrec1: 5,
       totalC: 42.5,
+      dialogVisible: false,
+      JuncSegunda_1 : "00:00",
+      JuncSegunda_2 : "00:00",
+      JuncTerca_1 : "00:00",
+      JuncTerca_2 : "00:00",
+      JuncQuarta_1 : "00:00",
+      JuncQuarta_2 : "00:00",
+      JuncQuinta_1 : "00:00",
+      JuncQuinta_2 : "00:00",
+      JuncSexta_1 : "00:00",
+      JuncSexta_2 : "00:00",
+
       
 
     };
@@ -298,6 +351,141 @@ export default {
 
   methods: {
 
+    listahorarios(){
+
+      this.dialogVisible = true
+       //MONDAY
+       if (this.SickDay[0] === true) {
+        this.JuncSegunda_1 = "Holidays/Sick"
+        this.JuncSegunda_2 = "Holidays/Sick"
+       }else{
+
+        var Segunda_list_1 = moment(this.monday[0]);
+        let horaSegunda1_l = moment(Segunda_list_1).format('H');
+        let minutoSegunda1_l= moment(Segunda_list_1).format('m');
+        horaSegunda1_l = this.funcaoColocaZero(horaSegunda1_l)
+        minutoSegunda1_l = this.funcaoColocaZero(minutoSegunda1_l)
+
+        this.JuncSegunda_1 = horaSegunda1_l + ":" + minutoSegunda1_l
+      
+
+        var Segunda_list_2 = moment(this.monday[1]);
+        let horaSegunda2_l = moment(Segunda_list_2).format('H');
+        let minutoSegunda2_l = moment(Segunda_list_2).format('m');
+        horaSegunda2_l = this.funcaoColocaZero(horaSegunda2_l)
+        minutoSegunda2_l = this.funcaoColocaZero(minutoSegunda2_l)
+        
+        this.JuncSegunda_2 = horaSegunda2_l + ":" + minutoSegunda2_l
+      }
+       
+        //TERCA
+        if (this.SickDay[1] === true) {
+        this.JuncTerca_1 = "Holidays/Sick"
+        this.JuncTerca_2 = "Holidays/Sick"
+       }else{
+        var Terca_list_1 = moment(this.tuesday[0]);
+        let horaTerca1_l = moment(Terca_list_1).format('H');
+        let minutoTerca1_l= moment(Terca_list_1).format('m');
+        horaTerca1_l = this.funcaoColocaZero(horaTerca1_l)
+        minutoTerca1_l = this.funcaoColocaZero(minutoTerca1_l)
+
+       this.JuncTerca_1 = horaTerca1_l + ":" + minutoTerca1_l
+      
+
+        var Terca_list_2 = moment(this.tuesday[1]);
+        let horaTerca2_l = moment(Terca_list_2).format('H');
+        let minutoTerca2_l= moment(Terca_list_2).format('m');
+        horaTerca2_l = this.funcaoColocaZero(horaTerca2_l)
+        minutoTerca2_l = this.funcaoColocaZero(minutoTerca2_l)
+        
+        this.JuncTerca_2 = horaTerca2_l + ":" + minutoTerca2_l
+       }
+
+        // QUARTA
+
+        if (this.SickDay[2] === true) {
+        this.JuncQuarta_1 = "Holidays/Sick"
+        this.JuncQuarta_2 = "Holidays/Sick"
+       }else{
+        
+        var Quarta_list_1 = moment(this.wednesday[0]);
+        let horaQuarta1_l = moment(Quarta_list_1).format('H');
+        let minutoQuarta1_l= moment(Quarta_list_1).format('m');
+        horaQuarta1_l = this.funcaoColocaZero(horaQuarta1_l)
+        minutoQuarta1_l = this.funcaoColocaZero(minutoQuarta1_l)
+
+       this.JuncQuarta_1 = horaQuarta1_l + ":" + minutoQuarta1_l
+      
+
+        var Quarta_list_2 = moment(this.wednesday[1]);
+        let horaQuarta2_l = moment(Quarta_list_2).format('H');
+        let minutoQuarta2_l= moment(Quarta_list_2).format('m');
+        horaQuarta2_l = this.funcaoColocaZero(horaQuarta2_l)
+        minutoQuarta2_l = this.funcaoColocaZero(minutoQuarta2_l)
+        
+        this.JuncQuarta_2 = horaQuarta2_l + ":" + minutoQuarta2_l
+       }
+        
+        //QUINTA
+
+        if (this.SickDay[3] === true) {
+        this.JuncQuinta_1 = "Holidays/Sick"
+        this.JuncQuinta_2 = "Holidays/Sick"
+       }else{
+        
+        var Quinta_list_1 = moment(this.thursday[0]);
+        let horaQuinta1_l = moment(Quinta_list_1).format('H');
+        let minutoQuinta1_l= moment(Quinta_list_1).format('m');
+        horaQuinta1_l = this.funcaoColocaZero(horaQuinta1_l)
+        minutoQuinta1_l = this.funcaoColocaZero(minutoQuinta1_l)
+
+       this.JuncQuinta_1 = horaQuinta1_l + ":" + minutoQuinta1_l
+      
+
+        var Quinta_list_2 = moment(this.thursday[1]);
+        let horaQuinta2_l = moment(Quinta_list_2).format('H');
+        let minutoQuinta2_l= moment(Quinta_list_2).format('m');
+        horaQuinta2_l = this.funcaoColocaZero(horaQuinta2_l)
+        minutoQuinta2_l = this.funcaoColocaZero(minutoQuinta2_l)
+        
+        this.JuncQuinta_2 = horaQuinta2_l + ":" + minutoQuinta2_l
+       }
+
+        //SEXTA
+
+        if (this.SickDay[4] === true) {
+        this.JuncSexta_1 = "Holidays/Sick"
+        this.JuncSexta_2 = "Holidays/Sick"
+       }else{
+        
+        var Sexta_list_1 = moment(this.friday[0]);
+        let horaSexta1_l = moment(Sexta_list_1).format('H');
+        let minutoSexta1_l= moment(Sexta_list_1).format('m');
+        horaSexta1_l = this.funcaoColocaZero(horaSexta1_l)
+        minutoSexta1_l = this.funcaoColocaZero(minutoSexta1_l)
+
+       this.JuncSexta_1 = horaSexta1_l + ":" + minutoSexta1_l
+      
+
+        var Sexta_list_2 = moment(this.friday[1]);
+        let horaSexta2_l = moment(Sexta_list_2).format('H');
+        let minutoSexta2_l= moment(Sexta_list_2).format('m');
+        horaSexta2_l = this.funcaoColocaZero(horaSexta2_l)
+        minutoSexta2_l = this.funcaoColocaZero(minutoSexta2_l)
+        
+        this.JuncSexta_2 = horaSexta2_l + ":" + minutoSexta2_l
+       }
+    },
+
+    funcaoColocaZero(paramsCzero){
+      if (paramsCzero.length === 1){
+        
+        return paramsCzero = "0" + paramsCzero
+
+      }else{
+        return paramsCzero
+      }
+    },
 
 
     exibirhorariosMonday(params) {
@@ -551,6 +739,7 @@ export default {
       console.log(totalTop);
       totalM = 2550 - totalTopM
       this.totalB = this.totalh - this.valorrec1
+      
 
       if (parseInt(this.testem) != parseFloat(this.testem) || parseInt(this.testet) != parseFloat(this.testet) || parseInt(this.testew) != parseFloat(this.testew) || parseInt(this.testett) != parseFloat(this.testett) || parseInt(this.testef) != parseFloat(this.testef)) {
         this.$message({
@@ -561,7 +750,7 @@ export default {
 
       }
 
-
+      
 
 
     }
