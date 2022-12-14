@@ -5,9 +5,9 @@
         <el-tag v-if="totalB.toFixed(2) === '0.00' || totalB.toFixed(2) === '37.50' || totalB.toFixed(2) === '22.50' || totalB.toFixed(2) === '30.00' || totalB.toFixed(2) === '15.00' || totalB.toFixed(2) === '7.50'" type="success">Hours Calculated: {{ totalB.toFixed(2) }}</el-tag>
         <el-tag v-else type="danger">Hours Calculated: {{ totalB.toFixed(2) }}</el-tag>
         <el-tag v-if ="totalB.toFixed(2) === '0.00'" type="Sucess">the whole week off😄😍😍😍</el-tag>
-        <el-tag type="sucess">Days: {{ valorrec1 }}</el-tag>
         <el-tag v-if=" totalB.toFixed(2) === '0.00' || totalB.toFixed(2) === '37.50' || totalB.toFixed(2) === '22.50' || totalB.toFixed(2) === '30.00' || totalB.toFixed(2) === '15.00' || totalB.toFixed(2) === '7.50'" type="success">😄😄</el-tag>
         <el-tag v-else type="danger">😭😭</el-tag>
+        <el-tag type="sucess">Days: {{ valorrec1 }}</el-tag>
         <hr>
         <el-button @click="listahorarios()" type="success" round>List</el-button>
         <hr>
@@ -60,7 +60,8 @@
                 testem.toFixed(2)
             }}</el-tag>
             <el-tag v-else class="ml-2" type="success">Minutes: {{ testem.toFixed(2) }}</el-tag>
-            <el-tag class="ml-2" type="success">Hours Integer: {{ testem2.toFixed(2) }}</el-tag>
+            <el-tag class="ml-2" type="success">Hours Plus Break: {{ testem2.toFixed(2) }}</el-tag>
+            <el-tag class="ml-2" type="warning">Hours:  {{ fixar2(testem2)  }}</el-tag>
           </div>
           <div class="input-group input-group-sm mb-3">
           </div>
@@ -105,7 +106,8 @@
                 testet.toFixed(2)
             }}</el-tag>
             <el-tag v-else class="ml-2" type="success">Minutes: {{ testet.toFixed(2) }}</el-tag>
-            <el-tag class="ml-2" type="success">Hours: {{ testet2.toFixed(2) }}</el-tag>
+            <el-tag class="ml-2" type="success">Hours Plus Break: {{ testet2.toFixed(2) }}</el-tag>
+            <el-tag class="ml-2" type="warning">Hours:  {{ fixar2(testet2)  }}</el-tag>
           </div>
           <div class="input-group input-group-sm mb-3">
 
@@ -149,7 +151,8 @@
                 testew.toFixed(2)
             }}</el-tag>
             <el-tag v-else class="ml-2" type="success">Minutes: {{ testew.toFixed(2) }}</el-tag>
-            <el-tag class="ml-2" type="success">Hours: {{ testew2.toFixed(2) }}</el-tag>
+            <el-tag class="ml-2" type="success">Hours Plus Break: {{ testew2.toFixed(2) }}</el-tag>
+            <el-tag class="ml-2" type="warning">Hours:  {{ fixar2(testew2)  }}</el-tag>
           </div>
           <div class="input-group input-group-sm mb-3">
 
@@ -193,7 +196,8 @@
                 testett.toFixed(2)
             }}</el-tag>
             <el-tag v-else class="ml-2" type="success">Minutes: {{ testett.toFixed(2) }}</el-tag>
-            <el-tag class="ml-2" type="success">Hours: {{ testett2.toFixed(2) }}</el-tag>
+            <el-tag class="ml-2" type="success">Hours Plus Break: {{ testett2.toFixed(2) }}</el-tag>
+            <el-tag class="ml-2" type="warning">Hours:  {{ fixar2(testett2)  }}</el-tag>
           </div>
           <div class="input-group input-group-sm mb-3">
 
@@ -213,7 +217,6 @@
           <template #header>
             <div class="card-header">
               <span>Friday</span>
-
             </div>
           </template>
           <div class="demo-range">
@@ -237,16 +240,17 @@
                 testef.toFixed(2)
             }}</el-tag>
             <el-tag v-else class="ml-2" type="success">Minutes: {{ testef.toFixed(2) }}</el-tag>
-            <el-tag class="ml-2" type="success">Hours: {{ testef2.toFixed(2) }}</el-tag>
+            <el-tag class="ml-2" type="success">Hours Plus Break: {{ testef2.toFixed(2) }}</el-tag>
+            <el-tag class="ml-2" type="warning">Hours:  {{ fixar2(testef2)  }}</el-tag>
           </div>
           <div class="input-group input-group-sm mb-3">
-
           </div>
         </el-card>
         <hr>
       </div>
     </div>
-    Made with ❤️ by Augusto Zeilmann - 2022
+    Made with ❤️ by Augusto Zeilmann - 2022 
+    
   </div>
 
 
@@ -359,6 +363,11 @@ export default {
           in: '07:30',
           out: '16:00',
           hours: '8.5'
+        }, {
+          date: '',
+          in: '',
+          out: '',
+          hours: '8.5'
         }]
 
       
@@ -367,6 +376,24 @@ export default {
   },
 
   methods: {
+
+    fixar2(paramsteste){
+      paramsteste = paramsteste -1
+      return paramsteste.toFixed(2)
+    },
+
+
+    tableRowClassName({row}) {
+      console.log(row.date)
+        if (row.in === "Holidays/Sick") {
+          return 'warning-row'
+        } else  {
+          return 'success-row'
+        }
+
+        
+        
+      },
 
     listahorarios(){
 
@@ -401,7 +428,8 @@ export default {
 
         this.tableData[0].in = this.JuncSegunda_1
         this.tableData[0].out = this.JuncSegunda_2
-        this.tableData[0].hours = this.testem2.toFixed(2)
+        let mm = this.testem2.toFixed(2)- 1
+        this.tableData[0].hours = mm.toFixed(2)
         
       }
        
@@ -431,7 +459,8 @@ export default {
         this.JuncTerca_2 = horaTerca2_l + ":" + minutoTerca2_l
         this.tableData[1].in = this.JuncTerca_1
         this.tableData[1].out = this.JuncTerca_2
-        this.tableData[1].hours = this.testet2.toFixed(2)
+        let ttu = this.testet2.toFixed(2)- 1
+        this.tableData[1].hours = ttu.toFixed(2)
        }
 
         // QUARTA
@@ -462,7 +491,8 @@ export default {
         this.JuncQuarta_2 = horaQuarta2_l + ":" + minutoQuarta2_l
         this.tableData[2].in = this.JuncQuarta_1
         this.tableData[2].out = this.JuncQuarta_2
-        this.tableData[2].hours = this.testew2.toFixed(2)
+        let ww = this.testew2.toFixed(2)- 1
+        this.tableData[2].hours = ww.toFixed(2)
        }
         
         //QUINTA
@@ -493,7 +523,8 @@ export default {
         this.JuncQuinta_2 = horaQuinta2_l + ":" + minutoQuinta2_l
         this.tableData[3].in = this.JuncQuinta_1
         this.tableData[3].out = this.JuncQuinta_2
-        this.tableData[3].hours = this.testett2.toFixed(2)
+        let tth = this.testett2.toFixed(2)- 1
+        this.tableData[3].hours = tth.toFixed(2)
        }
 
         //SEXTA
@@ -524,8 +555,17 @@ export default {
         this.JuncSexta_2 = horaSexta2_l + ":" + minutoSexta2_l
         this.tableData[4].in = this.JuncSexta_1
         this.tableData[4].out = this.JuncSexta_2
-        this.tableData[4].hours = this.testef2.toFixed(2)
+        let fr = this.testef2.toFixed(2)- 1
+        this.tableData[4].hours = fr.toFixed(2)
        }
+
+       if (this.totalB.toFixed(2) === '0.00' || this.totalB.toFixed(2) === '37.50' || this.totalB.toFixed(2) === '22.50' || this.totalB.toFixed(2) === '30.00' || this.totalB.toFixed(2) === '15.00' || this.totalB.toFixed(2) === '7.50'){
+        this.tableData[5].hours = this.totalB.toFixed(2) + " 😍"
+       }else{
+        this.tableData[5].hours = this.totalB.toFixed(2) + " 😭"
+       }
+
+       
     },
 
     funcaoColocaZero(paramsCzero){
@@ -832,7 +872,7 @@ export default {
 }
 
 .box-card {
-  width: 480px;
+  width: 420px;
 }
 
 .card-body {
@@ -844,4 +884,22 @@ export default {
 .demo-range .el-range-separator {
   box-sizing: content-box;
 }
+
+span {
+  font-size: 12px;
+}
+
+.el-checkbox {
+  font-size: 12px;
+
+}
+
+.el-table .warning-row {
+    background: rgb(253, 161, 161);
+    color:#000000
+  }
+
+  .el-table .success-row {
+    background: #f0f9eb;
+  }
 </style>
