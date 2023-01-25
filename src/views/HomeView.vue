@@ -1,16 +1,28 @@
 <template>
+  
     <div class="container">
     <div class="row justify-content-sm-center">
       <div class="col-sm-auto">
+        <el-card shadow="always" class="box-card">
+          <template #header>
+            <div class="card-header">
+              <span>Timer Help Team:</span>
+            </div>
+          </template>
+          <h6 class="letreiro">Code and Ideas: Augusto Zeilmann 🇧🇷 </h6>
+          <h6 class="letreiro">Brilliant Ideas: Dayane Keres 🇧🇷</h6>
+          <h6 class="letreiro">Tutorials: Remi Pitiot 🇫🇷</h6>
+        </el-card>
+        
+        <hr>
+        <el-button @click="listahorarios()" type="success" round>List</el-button>
+        <hr>
         <el-tag v-if="totalB.toFixed(2) === '0.00' || totalB.toFixed(2) === '37.50' || totalB.toFixed(2) === '22.50' || totalB.toFixed(2) === '30.00' || totalB.toFixed(2) === '15.00' || totalB.toFixed(2) === '7.50'" type="success">Hours Calculated: {{ totalB.toFixed(2) }}</el-tag>
         <el-tag v-else type="danger">Hours Calculated: {{ totalB.toFixed(2) }}</el-tag>
         <el-tag v-if ="totalB.toFixed(2) === '0.00'" type="Sucess">the whole week off😄😍😍😍</el-tag>
         <el-tag v-if=" totalB.toFixed(2) === '0.00' || totalB.toFixed(2) === '37.50' || totalB.toFixed(2) === '22.50' || totalB.toFixed(2) === '30.00' || totalB.toFixed(2) === '15.00' || totalB.toFixed(2) === '7.50'" type="success">😄😄</el-tag>
         <el-tag v-else type="danger">😭😭</el-tag>
         <el-tag type="sucess">Days: {{ valorrec1 }}</el-tag>
-        <hr>
-        <el-button @click="listahorarios()" type="success" round>List</el-button>
-        <hr>
         <el-card shadow="always" class="box-card">
           <template #header>
             <div class="card-header">
@@ -902,4 +914,9 @@ span {
   .el-table .success-row {
     background: #f0f9eb;
   }
+
+ .letreiro {
+
+  font-size: 12px;
+ }
 </style>
